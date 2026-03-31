@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kowalik_Losowanie.MainPage"
+             Title="Losowanie ucznia">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="10">
+            <Label Text="System losowania osoby do odpowiedzi"
+                   FontAttributes="Bold"
+                   FontSize="22" />
+
+            <Label Text="Klasa" FontAttributes="Bold" />
+            <Entry x:Name="ClassEntry" Placeholder="Np. 3A" />
+            <HorizontalStackLayout Spacing="10">
+                <Button Text="Dodaj klasę" Clicked="OnAddClassClicked" />
+                <Button Text="Zapisz klasę" Clicked="OnSaveClassClicked" />
+            </HorizontalStackLayout>
+
+            <Picker x:Name="ClassPicker"
+                    Title="Wybierz klasę"
+                    SelectedIndexChanged="OnClassSelectedIndexChanged" />
+
+            <Label Text="Uczniowie" FontAttributes="Bold" />
+            <Entry x:Name="StudentEntry" Placeholder="Imię i nazwisko ucznia" />
+            <HorizontalStackLayout Spacing="10">
+                <Button Text="Dodaj ucznia" Clicked="OnAddStudentClicked" />
+                <Button Text="Edytuj ucznia" Clicked="OnEditStudentClicked" />
+                <Button Text="Usuń ucznia" Clicked="OnDeleteStudentClicked" />
+            </HorizontalStackLayout>
+
+            <CollectionView x:Name="StudentsCollection"
+                            SelectionMode="Single"
+                            SelectionChanged="OnStudentSelectionChanged"
+                            HeightRequest="280">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="10" Margin="0,4" Stroke="#CCCCCC" StrokeThickness="1">
+                            <Label Text="{Binding .}" />
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="Losuj osobę do odpowiedzi"
+                    FontAttributes="Bold"
+                    Clicked="OnDrawStudentClicked" />
+            <Label x:Name="ResultLabel"
+                   Text="Wynik losowania pojawi się tutaj"
+                   FontSize="18"
+                   FontAttributes="Bold" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
